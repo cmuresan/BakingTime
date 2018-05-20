@@ -3,4 +3,6 @@
     <string name="recipe_image">Recipe image</string>
     <string name="servings" formatted="false">Serves %d</string>
     <string name="recipe_image_error">There was an error fetching the recipe image.</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="recipe_error">There was an error fetching the recipe.</string>
 </resources>

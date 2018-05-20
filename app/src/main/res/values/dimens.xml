@@ -4,4 +4,8 @@
     <dimen name="margin_default">16dp</dimen>
     <dimen name="cards_text_padding">4dp</dimen>
     <dimen name="cards_title_size">16sp</dimen>
+    <dimen name="ingredients_title_text_size">18sp</dimen>
+    <dimen name="line_spacing">4dp</dimen>
+    <dimen name="step_padding">8dp</dimen>
+    <dimen name="step_text_size">22sp</dimen>
 </resources>

@@ -1,6 +1,7 @@
 package com.example.android.bakingtime.main;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.example.android.bakingtime.R;
 import com.example.android.bakingtime.databinding.ItemRecipeBinding;
+import com.example.android.bakingtime.details.RecipeDetailsActivity;
 import com.example.android.networkmodule.model.Recipe;
 import com.squareup.picasso.Picasso;
 
@@ -37,8 +39,16 @@ class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeViewHolde
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecipeViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecipeViewHolder holder, final int position) {
         holder.bindData(recipes.get(position));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent recipeDetailsIntent = new Intent(context, RecipeDetailsActivity.class);
+                recipeDetailsIntent.putExtra(RecipeDetailsActivity.EXTRA_RECIPE, recipes.get(position));
+                context.startActivity(recipeDetailsIntent);
+            }
+        });
         if (position == recipes.size() - 1) {
             RecyclerView.LayoutParams layoutParams = (RecyclerView.LayoutParams) holder.itemView.getLayoutParams();
             layoutParams.bottomMargin = (int) context.getResources().getDimension(R.dimen.margin_default);
@@ -61,12 +71,6 @@ class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeViewHolde
         RecipeViewHolder(View itemView) {
             super(itemView);
             binding = DataBindingUtil.bind(itemView);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                }
-            });
         }
 
         void bindData(Recipe recipe) {
@@ -83,8 +87,6 @@ class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeViewHolde
             } else {
                 bindLocalImage(recipe.getName());
             }
-
-
         }
 
         private void bindLocalImage(String name) {

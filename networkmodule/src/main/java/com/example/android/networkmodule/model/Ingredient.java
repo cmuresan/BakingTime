@@ -6,6 +6,10 @@ import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 
 public class Ingredient implements Parcelable {
+    private static final String UNIT = "UNIT";
+    private static final String CUP = "CUP";
+    private static final String CUPS = "cups";
+
     @SerializedName("quantity")
     private float quantity;
     @SerializedName("measure")
@@ -53,5 +57,21 @@ public class Ingredient implements Parcelable {
 
     public String getIngredient() {
         return ingredient;
+    }
+
+    @Override
+    public String toString() {
+        return quantity + getMeasureUnit() + " " + getIngredient();
+    }
+
+    private String getMeasureUnit() {
+        switch (measure) {
+            case UNIT:
+                return " ";
+            case CUP:
+                return " " + (quantity > 1 ? CUPS : CUP.toLowerCase());
+            default:
+                return measure.toLowerCase();
+        }
     }
 }

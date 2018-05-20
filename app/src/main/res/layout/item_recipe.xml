@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools">
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,7 +8,9 @@
         android:layout_marginEnd="@dimen/margin_default"
         android:layout_marginStart="@dimen/margin_default"
         android:layout_marginTop="@dimen/margin_default"
-        android:background="@drawable/card_background">
+        android:background="@drawable/card_background"
+        android:elevation="@dimen/cardview_default_elevation"
+        tools:targetApi="lollipop">
 
         <ImageView
             android:id="@+id/recipe_image"

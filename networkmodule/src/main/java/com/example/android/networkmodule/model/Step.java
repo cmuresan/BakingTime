@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Step implements Parcelable{
+public class Step implements Parcelable {
     @SerializedName("id")
     private int id;
     @SerializedName("shortDescription")
@@ -58,6 +58,10 @@ public class Step implements Parcelable{
 
     public String getShortDescription() {
         return shortDescription;
+    }
+
+    public String getDisplayShortDescription() {
+        return id + ". " + shortDescription;
     }
 
     public String getDescription() {
