@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     private void initRecyclerView() {
         recipesAdapter = new RecipesAdapter(this);
 
-//        binding.recipesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         binding.recipesRecyclerView.setHasFixedSize(true);
         binding.recipesRecyclerView.setAdapter(recipesAdapter);
     }
