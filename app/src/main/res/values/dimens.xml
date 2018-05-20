@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="image_recipe_height">200dp</dimen>
+    <dimen name="margin_default">16dp</dimen>
+    <dimen name="cards_text_padding">4dp</dimen>
+    <dimen name="cards_title_size">16sp</dimen>
+</resources>
