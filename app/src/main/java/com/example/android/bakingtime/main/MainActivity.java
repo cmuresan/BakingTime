@@ -3,7 +3,6 @@ package com.example.android.bakingtime.main;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.widget.Toast;
 
 import com.example.android.bakingtime.R;
@@ -34,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private void initRecyclerView() {
         recipesAdapter = new RecipesAdapter(this);
 
-        binding.recipesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        binding.recipesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         binding.recipesRecyclerView.setHasFixedSize(true);
         binding.recipesRecyclerView.setAdapter(recipesAdapter);
     }
