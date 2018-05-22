@@ -1,8 +1,9 @@
-package com.example.android.bakingtime.details;
+package com.example.android.bakingtime.recipedetails;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.widget.Toast;
@@ -37,10 +38,18 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         }
 
         if (recipe != null) {
+            setTitle(recipe.getName());
             initRecyclerView();
             bindData();
         } else {
             Toast.makeText(this, getString(R.string.recipe_error), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void setTitle(String name) {
+        ActionBar supportActionBar = getSupportActionBar();
+        if (supportActionBar != null) {
+            supportActionBar.setTitle(name);
         }
     }
 

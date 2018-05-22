@@ -1,30 +1,32 @@
-package com.example.android.bakingtime.details;
+package com.example.android.bakingtime.recipedetails;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.android.bakingtime.R;
 import com.example.android.bakingtime.databinding.ItemStepBinding;
+import com.example.android.bakingtime.stepdetails.StepDetailsActivity;
 import com.example.android.networkmodule.model.Step;
 
+import java.util.ArrayList;
 import java.util.List;
 
 class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepViewHolder> {
     private final Context context;
-    private List<Step> steps;
+    private ArrayList<Step> steps;
 
-    public StepsAdapter(Context context) {
+    StepsAdapter(Context context) {
         this.context = context;
     }
 
     public void setSteps(List<Step> steps) {
-        this.steps = steps;
+        this.steps = new ArrayList<>(steps);
         notifyDataSetChanged();
     }
 
@@ -36,7 +38,7 @@ class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull StepsAdapter.StepViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final StepsAdapter.StepViewHolder holder, final int position) {
         if (position != 0) {
             holder.binding.stepName.setText(steps.get(position).getDisplayShortDescription());
         } else {
@@ -45,8 +47,10 @@ class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepViewHolder> {
         holder.binding.stepName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO handle click
-                Toast.makeText(context, steps.get(position).getVideoURL(), Toast.LENGTH_SHORT).show();
+                Intent stepIntent = new Intent(context, StepDetailsActivity.class);
+                stepIntent.putExtra(StepDetailsActivity.EXTRA_STEP_NUMBER, holder.getAdapterPosition());
+                stepIntent.putParcelableArrayListExtra(StepDetailsActivity.EXTRA_STEPS, steps);
+                context.startActivity(stepIntent);
             }
         });
     }

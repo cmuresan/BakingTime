@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 
 import com.example.android.bakingtime.R;
 import com.example.android.bakingtime.databinding.ItemRecipeBinding;
-import com.example.android.bakingtime.details.RecipeDetailsActivity;
+import com.example.android.bakingtime.recipedetails.RecipeDetailsActivity;
 import com.example.android.networkmodule.model.Recipe;
 import com.squareup.picasso.Picasso;
 

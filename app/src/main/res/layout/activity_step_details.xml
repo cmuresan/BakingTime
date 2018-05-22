@@ -6,10 +6,10 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".recipedetails.RecipeDetailsActivity">
+        tools:context=".stepdetails.StepDetailsActivity">
 
         <include
-            android:id="@+id/recipe_details"
-            layout="@layout/fragment_recipe_details" />
+            android:id="@+id/step_details"
+            layout="@layout/fragment_step_details" />
     </android.support.constraint.ConstraintLayout>
 </layout>
