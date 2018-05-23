@@ -8,4 +8,5 @@
     <dimen name="line_spacing">4dp</dimen>
     <dimen name="step_padding">8dp</dimen>
     <dimen name="step_text_size">22sp</dimen>
+    <dimen name="tablet_layout_left_fragments_width">400dp</dimen>
 </resources>
