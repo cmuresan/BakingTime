@@ -6,7 +6,6 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -41,12 +40,14 @@ public class RecipeDetailsActivity extends AppCompatActivity implements OnStepIt
     public static final String EXTRA_RECIPE = "RecipeDetailsActivity.EXTRA_RECIPE";
     private static final int FIRST_STEP = 0;
     private static final String SELECTED_STEP = "RecipeDetailsActivity.SELECTED_STEP";
+    private static final String VIDEO_CURRENT_POSITION = "RecipeDetailsActivity.VIDEO_CURRENT_POSITION";
     private Recipe recipe;
     private ActivityRecipeDetailsBinding binding;
     private StepsAdapter stepsAdapter;
     private boolean isTwoPane;
     private SimpleExoPlayer exoPlayer;
     private int selectedStep;
+    private long videoSavedPosition = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +74,7 @@ public class RecipeDetailsActivity extends AppCompatActivity implements OnStepIt
         if (binding.stepDetails != null) {
             isTwoPane = true;
             if (savedInstanceState != null) {
+                videoSavedPosition = savedInstanceState.getLong(VIDEO_CURRENT_POSITION);
                 selectedStep = savedInstanceState.getInt(SELECTED_STEP);
                 handleDetailsFragmentData(selectedStep);
             } else {
@@ -112,6 +114,9 @@ public class RecipeDetailsActivity extends AppCompatActivity implements OnStepIt
         String userAgent = Util.getUserAgent(this, "BakingTime");
         MediaSource mediaSource = new ExtractorMediaSource(mediaUri, new DefaultDataSourceFactory(
                 this, userAgent), new DefaultExtractorsFactory(), null, null);
+        if (videoSavedPosition > 0) {
+            exoPlayer.seekTo(videoSavedPosition);
+        }
         exoPlayer.prepare(mediaSource);
         exoPlayer.setPlayWhenReady(true);
     }
@@ -166,7 +171,7 @@ public class RecipeDetailsActivity extends AppCompatActivity implements OnStepIt
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
+                onBackPressed();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -211,5 +216,9 @@ public class RecipeDetailsActivity extends AppCompatActivity implements OnStepIt
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt(SELECTED_STEP, selectedStep);
+        if (exoPlayer != null) {
+            long currentPosition = exoPlayer.getCurrentPosition();
+            outState.putLong(VIDEO_CURRENT_POSITION, currentPosition);
+        }
     }
 }

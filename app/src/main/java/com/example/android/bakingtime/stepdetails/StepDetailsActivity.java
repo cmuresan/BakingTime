@@ -8,7 +8,6 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -40,10 +39,12 @@ public class StepDetailsActivity extends AppCompatActivity {
 
     public static final String EXTRA_STEP_NUMBER = "StepDetailsActivity.EXTRA_STEP_NUMBER";
     public static final String EXTRA_STEPS = "StepDetailsActivity.EXTRA_STEPS";
+    private static final String VIDEO_CURRENT_POSITION = "StepDetailsActivity.VIDEO_CURRENT_POSITION";
     private ActivityStepDetailsBinding binding;
     private ArrayList<Step> steps;
     private int stepNumber;
     private SimpleExoPlayer exoPlayer;
+    private long videoSavedPosition = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,9 @@ public class StepDetailsActivity extends AppCompatActivity {
         ActionBar supportActionBar = getSupportActionBar();
         if (supportActionBar != null) {
             supportActionBar.setDisplayHomeAsUpEnabled(true);
+        }
+        if (savedInstanceState != null) {
+            videoSavedPosition = savedInstanceState.getLong(VIDEO_CURRENT_POSITION);
         }
 
         Intent intent = getIntent();
@@ -75,7 +79,7 @@ public class StepDetailsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
+                onBackPressed();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -150,6 +154,9 @@ public class StepDetailsActivity extends AppCompatActivity {
             String userAgent = Util.getUserAgent(this, "BakingTime");
             MediaSource mediaSource = new ExtractorMediaSource(mediaUri, new DefaultDataSourceFactory(
                     this, userAgent), new DefaultExtractorsFactory(), null, null);
+            if (videoSavedPosition > 0) {
+                exoPlayer.seekTo(videoSavedPosition);
+            }
             exoPlayer.prepare(mediaSource);
             exoPlayer.setPlayWhenReady(true);
         }
@@ -211,6 +218,15 @@ public class StepDetailsActivity extends AppCompatActivity {
             }
         } else {
             showToast();
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (exoPlayer != null) {
+            long currentPosition = exoPlayer.getCurrentPosition();
+            outState.putLong(VIDEO_CURRENT_POSITION, currentPosition);
         }
     }
 
