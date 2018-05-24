@@ -142,13 +142,8 @@ public class RecipeDetailsActivity extends AppCompatActivity implements OnStepIt
     protected void onStop() {
         Picasso.with(this).cancelRequest(target);
         stepsAdapter.removeClickListener();
-        super.onStop();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
         releasePlayer();
+        super.onStop();
     }
 
     private void releasePlayer() {

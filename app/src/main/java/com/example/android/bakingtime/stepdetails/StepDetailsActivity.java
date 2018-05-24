@@ -182,13 +182,8 @@ public class StepDetailsActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         Picasso.with(this).cancelRequest(target);
-        super.onStop();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
         releasePlayer();
+        super.onStop();
     }
 
     private void releasePlayer() {
