@@ -8,9 +8,11 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -50,6 +52,11 @@ public class StepDetailsActivity extends AppCompatActivity {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_step_details);
 
+        ActionBar supportActionBar = getSupportActionBar();
+        if (supportActionBar != null) {
+            supportActionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
         Intent intent = getIntent();
         if (intent == null || !intent.hasExtra(EXTRA_STEPS)) {
             showToast();
@@ -62,6 +69,16 @@ public class StepDetailsActivity extends AppCompatActivity {
 
         handleIntentData();
         addListeners();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void handleIntentData() {
