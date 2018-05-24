@@ -1,5 +1,6 @@
 package com.example.android.bakingtime.main;
 
+import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,11 +12,14 @@ import com.example.android.networkmodule.model.Recipe;
 import com.example.android.networkmodule.network.ApiImpl;
 import com.example.android.networkmodule.network.ApiInterface;
 import com.example.android.networkmodule.network.CallbackInterface;
+import com.google.gson.Gson;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String RECIPES_PREFERENCE_NAME = "MainActivity.RECIPES_PREFERENCE_NAME";
+    public static final String RECIPES_PREFERENCE_KEY = "MainActivity.RECIPES_PREFERENCE_KEY";
     private ActivityMainBinding binding;
     private RecipesAdapter recipesAdapter;
 
@@ -46,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void success(List<Recipe> response) {
             recipesAdapter.setRecipes(response);
+            saveRecipes(response);
         }
 
         @Override
@@ -53,4 +58,10 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, "Failure", Toast.LENGTH_SHORT).show();
         }
     };
+
+    private void saveRecipes(List<Recipe> response) {
+        SharedPreferences.Editor prefs = getSharedPreferences(RECIPES_PREFERENCE_NAME, MODE_PRIVATE).edit();
+        prefs.putString(RECIPES_PREFERENCE_KEY, new Gson().toJson(response));
+        prefs.apply();
+    }
 }

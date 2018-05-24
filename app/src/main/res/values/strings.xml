@@ -9,4 +9,7 @@
     <string name="thumbnail_error">There was an error fetching the thumbnail.</string>
     <string name="previous_step">Previous step</string>
     <string name="next_step">Next step</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="configure">Configure</string>
+    <string name="add_widget">Add widget</string>
 </resources>
