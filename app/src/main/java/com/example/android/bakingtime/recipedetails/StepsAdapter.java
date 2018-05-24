@@ -67,7 +67,7 @@ class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepViewHolder> {
     }
 
     class StepViewHolder extends RecyclerView.ViewHolder {
-        private ItemStepBinding binding;
+        private final ItemStepBinding binding;
 
         StepViewHolder(View itemView) {
             super(itemView);

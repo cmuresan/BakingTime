@@ -39,13 +39,13 @@ class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeViewHolde
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecipeViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final RecipeViewHolder holder, final int position) {
         holder.bindData(recipes.get(position));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent recipeDetailsIntent = new Intent(context, RecipeDetailsActivity.class);
-                recipeDetailsIntent.putExtra(RecipeDetailsActivity.EXTRA_RECIPE, recipes.get(position));
+                recipeDetailsIntent.putExtra(RecipeDetailsActivity.EXTRA_RECIPE, recipes.get(holder.getAdapterPosition()));
                 context.startActivity(recipeDetailsIntent);
             }
         });
@@ -62,7 +62,7 @@ class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeViewHolde
     }
 
     class RecipeViewHolder extends RecyclerView.ViewHolder {
-        private ItemRecipeBinding binding;
+        private final ItemRecipeBinding binding;
         private static final String PIE = "pie";
         private static final String BROWNIE = "brownie";
         private static final String CHEESE = "cheese";

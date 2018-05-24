@@ -7,15 +7,15 @@ import com.google.gson.annotations.SerializedName;
 
 public class Step implements Parcelable {
     @SerializedName("id")
-    private int id;
+    private final int id;
     @SerializedName("shortDescription")
-    private String shortDescription;
+    private final String shortDescription;
     @SerializedName("description")
-    private String description;
+    private final String description;
     @SerializedName("videoURL")
-    private String videoURL;
+    private final String videoURL;
     @SerializedName("thumbnailURL")
-    private String thumbnailURL;
+    private final String thumbnailURL;
 
 
     private Step(Parcel in) {
@@ -51,10 +51,6 @@ public class Step implements Parcelable {
             return new Step[size];
         }
     };
-
-    public int getId() {
-        return id;
-    }
 
     public String getShortDescription() {
         return shortDescription;

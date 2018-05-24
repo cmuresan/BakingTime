@@ -32,10 +32,6 @@ class WidgetRecipesAdapter extends RecyclerView.Adapter<WidgetRecipesAdapter.Rec
         this.onRecipeItemClickListener = onRecipeItemClickListener;
     }
 
-    public void removeClickListener() {
-        this.onRecipeItemClickListener = null;
-    }
-
     @NonNull
     @Override
     public RecipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

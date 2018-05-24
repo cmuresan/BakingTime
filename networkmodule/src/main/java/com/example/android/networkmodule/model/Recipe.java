@@ -13,19 +13,19 @@ import java.util.List;
 
 public class Recipe implements Parcelable {
     @SerializedName("id")
-    private int id;
+    private final int id;
     @SerializedName("name")
-    private String name;
+    private final String name;
     @SerializedName("ingredients")
-    private List<Ingredient> ingredients;
+    private final List<Ingredient> ingredients;
     @SerializedName("steps")
-    private List<Step> steps;
+    private final List<Step> steps;
     @SerializedName("servings")
-    private int servings;
+    private final int servings;
     @SerializedName("image")
-    private String image;
+    private final String image;
 
-    protected Recipe(Parcel in) {
+    private Recipe(Parcel in) {
         id = in.readInt();
         name = in.readString();
         ingredients = in.createTypedArrayList(Ingredient.CREATOR);
@@ -60,10 +60,6 @@ public class Recipe implements Parcelable {
             return new Recipe[size];
         }
     };
-
-    public int getId() {
-        return id;
-    }
 
     public String getName() {
         return name;

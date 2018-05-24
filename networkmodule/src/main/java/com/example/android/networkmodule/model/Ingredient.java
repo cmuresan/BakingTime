@@ -11,13 +11,13 @@ public class Ingredient implements Parcelable {
     private static final String CUPS = "cups";
 
     @SerializedName("quantity")
-    private float quantity;
+    private final float quantity;
     @SerializedName("measure")
-    private String measure;
+    private final String measure;
     @SerializedName("ingredient")
-    private String ingredient;
+    private final String ingredient;
 
-    protected Ingredient(Parcel in) {
+    private Ingredient(Parcel in) {
         quantity = in.readFloat();
         measure = in.readString();
         ingredient = in.readString();
@@ -47,15 +47,7 @@ public class Ingredient implements Parcelable {
         dest.writeString(ingredient);
     }
 
-    public float getQuantity() {
-        return quantity;
-    }
-
-    public String getMeasure() {
-        return measure;
-    }
-
-    public String getIngredient() {
+    private String getIngredient() {
         return ingredient;
     }
 

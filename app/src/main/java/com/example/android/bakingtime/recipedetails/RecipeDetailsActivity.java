@@ -40,7 +40,7 @@ public class RecipeDetailsActivity extends AppCompatActivity implements OnStepIt
     private static final int FIRST_STEP = 0;
     private static final String SELECTED_STEP = "RecipeDetailsActivity.SELECTED_STEP";
     private Recipe recipe;
-    ActivityRecipeDetailsBinding binding;
+    private ActivityRecipeDetailsBinding binding;
     private StepsAdapter stepsAdapter;
     private boolean isTwoPane;
     private SimpleExoPlayer exoPlayer;
@@ -118,7 +118,7 @@ public class RecipeDetailsActivity extends AppCompatActivity implements OnStepIt
         Picasso.with(this).load(mediaUri).into(target);
     }
 
-    private Target target = new Target() {
+    private final Target target = new Target() {
         @Override
         public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
             binding.stepVideo.setDefaultArtwork(bitmap);

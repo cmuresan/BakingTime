@@ -29,7 +29,7 @@ public class RecipeWidgetConfigureActivity extends Activity implements OnRecipeI
     private static final String PREFS_NAME = "com.example.android.bakingtime.widget.RecipeWidget";
     private static final String TITLE_PREFIX_KEY = "title_appwidget_";
     private static final String CONTENT_PREFIX_KEY = "content_appwidget_";
-    int mAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
+    private int mAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
 
     private WidgetRecipesAdapter widgetRecipesAdapter;
     private List<Recipe> recipes;
@@ -39,7 +39,7 @@ public class RecipeWidgetConfigureActivity extends Activity implements OnRecipeI
     }
 
     // Write the prefix to the SharedPreferences object for this widget
-    static void savePref(Context context, String prefixKey, int appWidgetId, String text) {
+    private static void savePref(Context context, String prefixKey, int appWidgetId, String text) {
         SharedPreferences.Editor prefs = context.getSharedPreferences(PREFS_NAME, 0).edit();
         prefs.putString(prefixKey + appWidgetId, text);
         prefs.apply();

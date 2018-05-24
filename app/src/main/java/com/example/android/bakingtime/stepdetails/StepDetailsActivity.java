@@ -142,7 +142,7 @@ public class StepDetailsActivity extends AppCompatActivity {
         Picasso.with(this).load(mediaUri).into(target);
     }
 
-    private Target target = new Target() {
+    private final Target target = new Target() {
         @Override
         public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
             if (binding.stepDetails != null) {
