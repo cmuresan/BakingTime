@@ -9,7 +9,7 @@
 
         <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/ingredients_card"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero_dp_size"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/margin_default"
             android:background="@drawable/card_background"
@@ -20,7 +20,7 @@
 
             <TextView
                 android:id="@+id/ingredients_title"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/zero_dp_size"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/margin_default"
                 android:text="@string/ingredients"
@@ -48,7 +48,7 @@
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/steps_recycler_view"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero_dp_size"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/margin_default"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"

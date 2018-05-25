@@ -11,7 +11,7 @@
         <include
             android:id="@+id/recipe_details"
             layout="@layout/fragment_recipe_details"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero_dp_size"
             android:layout_height="match_parent"
             app:layout_constraintWidth_percent="0.35" />
 
@@ -19,15 +19,15 @@
         <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/step_details"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero_dp_size"
             android:layout_height="match_parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/recipe_details">
 
             <com.google.android.exoplayer2.ui.SimpleExoPlayerView
                 android:id="@+id/step_video"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="@dimen/zero_dp_size"
+                android:layout_height="@dimen/zero_dp_size"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent="0.6"
                 app:layout_constraintStart_toStartOf="parent"
@@ -35,8 +35,8 @@
 
             <TextView
                 android:id="@+id/step_description"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="@dimen/zero_dp_size"
+                android:layout_height="@dimen/zero_dp_size"
                 android:padding="@dimen/margin_default"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="@dimen/step_text_size"

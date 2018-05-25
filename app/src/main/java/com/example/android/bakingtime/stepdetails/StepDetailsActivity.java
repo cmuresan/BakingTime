@@ -40,11 +40,13 @@ public class StepDetailsActivity extends AppCompatActivity {
     public static final String EXTRA_STEP_NUMBER = "StepDetailsActivity.EXTRA_STEP_NUMBER";
     public static final String EXTRA_STEPS = "StepDetailsActivity.EXTRA_STEPS";
     private static final String VIDEO_CURRENT_POSITION = "StepDetailsActivity.VIDEO_CURRENT_POSITION";
+    private static final String PLAYERS_STATE = "StepDetailsActivity.PLAYERS_STATE";
     private ActivityStepDetailsBinding binding;
     private ArrayList<Step> steps;
     private int stepNumber;
     private SimpleExoPlayer exoPlayer;
     private long videoSavedPosition = 0;
+    private boolean playersState = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,7 @@ public class StepDetailsActivity extends AppCompatActivity {
         }
         if (savedInstanceState != null) {
             videoSavedPosition = savedInstanceState.getLong(VIDEO_CURRENT_POSITION);
+            playersState = savedInstanceState.getBoolean(PLAYERS_STATE);
         }
 
         Intent intent = getIntent();
@@ -158,7 +161,7 @@ public class StepDetailsActivity extends AppCompatActivity {
                 exoPlayer.seekTo(videoSavedPosition);
             }
             exoPlayer.prepare(mediaSource);
-            exoPlayer.setPlayWhenReady(true);
+            exoPlayer.setPlayWhenReady(playersState);
         }
     }
 
@@ -227,6 +230,7 @@ public class StepDetailsActivity extends AppCompatActivity {
         if (exoPlayer != null) {
             long currentPosition = exoPlayer.getCurrentPosition();
             outState.putLong(VIDEO_CURRENT_POSITION, currentPosition);
+            outState.putBoolean(PLAYERS_STATE, exoPlayer.getPlayWhenReady());
         }
     }
 

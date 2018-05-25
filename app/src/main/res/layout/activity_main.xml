@@ -11,8 +11,8 @@
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recipes_recycler_view"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="@dimen/zero_dp_size"
+            android:layout_height="@dimen/zero_dp_size"
             android:orientation="vertical"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"

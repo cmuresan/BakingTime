@@ -41,6 +41,7 @@ public class RecipeDetailsActivity extends AppCompatActivity implements OnStepIt
     private static final int FIRST_STEP = 0;
     private static final String SELECTED_STEP = "RecipeDetailsActivity.SELECTED_STEP";
     private static final String VIDEO_CURRENT_POSITION = "RecipeDetailsActivity.VIDEO_CURRENT_POSITION";
+    private static final String PLAYERS_STATE = "RecipeDetailsActivity.PLAYERS_STATE";
     private Recipe recipe;
     private ActivityRecipeDetailsBinding binding;
     private StepsAdapter stepsAdapter;
@@ -48,6 +49,7 @@ public class RecipeDetailsActivity extends AppCompatActivity implements OnStepIt
     private SimpleExoPlayer exoPlayer;
     private int selectedStep;
     private long videoSavedPosition = 0;
+    private boolean playersState = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +77,7 @@ public class RecipeDetailsActivity extends AppCompatActivity implements OnStepIt
             isTwoPane = true;
             if (savedInstanceState != null) {
                 videoSavedPosition = savedInstanceState.getLong(VIDEO_CURRENT_POSITION);
+                playersState = savedInstanceState.getBoolean(PLAYERS_STATE);
                 selectedStep = savedInstanceState.getInt(SELECTED_STEP);
                 handleDetailsFragmentData(selectedStep);
             } else {
@@ -118,7 +121,7 @@ public class RecipeDetailsActivity extends AppCompatActivity implements OnStepIt
             exoPlayer.seekTo(videoSavedPosition);
         }
         exoPlayer.prepare(mediaSource);
-        exoPlayer.setPlayWhenReady(true);
+        exoPlayer.setPlayWhenReady(playersState);
     }
 
     private void setPlayerThumbnail(Uri mediaUri) {
@@ -219,6 +222,7 @@ public class RecipeDetailsActivity extends AppCompatActivity implements OnStepIt
         if (exoPlayer != null) {
             long currentPosition = exoPlayer.getCurrentPosition();
             outState.putLong(VIDEO_CURRENT_POSITION, currentPosition);
+            outState.putBoolean(PLAYERS_STATE, exoPlayer.getPlayWhenReady());
         }
     }
 }

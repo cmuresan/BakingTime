@@ -9,4 +9,5 @@
     <dimen name="step_padding">8dp</dimen>
     <dimen name="step_text_size">22sp</dimen>
     <dimen name="widget_margin">8dp</dimen>
+    <dimen name="zero_dp_size">0dp</dimen>
 </resources>

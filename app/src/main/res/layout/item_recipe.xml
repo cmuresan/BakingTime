@@ -14,7 +14,7 @@
 
         <ImageView
             android:id="@+id/recipe_image"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero_dp_size"
             android:layout_height="@dimen/image_recipe_height"
             android:contentDescription="@string/recipe_image"
             android:scaleType="centerCrop"
@@ -24,7 +24,7 @@
 
         <TextView
             android:id="@+id/recipe_title"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero_dp_size"
             android:layout_height="wrap_content"
             android:padding="@dimen/cards_text_padding"
             android:textColor="@android:color/white"
@@ -35,7 +35,7 @@
 
         <TextView
             android:id="@+id/recipe_servings"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero_dp_size"
             android:layout_height="wrap_content"
             android:padding="@dimen/cards_text_padding"
             android:textColor="@android:color/white"
